@@ -22,7 +22,11 @@ desde otro sistema operativo, las instrucciones pueden cambiar.
 
 IMPORTANTE 3: las aplicaciones tipo API trabajan con una base de datos MySQL.
 Se puede instalar MySQL en el propio sistema operativo o en un contenedor de Docker.
-Una vez se tenga funcionando la base de datos, seguir las siguientes instrucciones:
+Una vez se tenga funcionando la base de datos, seguir las instrucciones del siguiente apartado.
+
+IMPORTANTE 4: para cualquier duda o problema durante la instalación de los 
+proyectos, contactad con el autor: Carlos Giovanni Molina Ronceros (giovanni.molina@edu.uah.es).
+
 
 ######################################################################
 ### Instalación Base de Datos ########################################
@@ -34,6 +38,22 @@ Una vez se tenga funcionando la base de datos, seguir las siguientes instruccion
 3. Ejecutar el script "database/model.sql". Este script creará todas las
    tablas e insertará datos para realizar pruebas.
 
+4. Después de realizar la importación de datos, se tienen las siguientes 
+   cuentas para acceder a las aplicaciones
+
+   * Tipo de cuenta “Administrador”:
+     - email: administrator@tfm.com password: 1234
+     - email: administrator2@tfm.com password: 1234
+     - email: administrator3@tfm.com password: 1234
+   * Tipo de cuenta “Instructor”:
+     - email: instructor@tfm.com password: 1234
+     - email: instructor2@tfm.com password: 1234
+     - email: instructor3@tfm.com password: 1234
+   * Tipo de cuenta “Usuario”:
+     - email: user@tfm.com password: 1234
+     - email: user2@tfm.com password: 1234
+     - email: user3@tfm.com password: 1234
+
 
 ######################################################################
 ### Instalación API Lumen ############################################
@@ -43,12 +63,12 @@ Una vez se tenga funcionando la base de datos, seguir las siguientes instruccion
 
 2. Entrar en la carpeta del proyecto: cd api-lumen
 
-3. Copiar el archivo .env.example y renombrarlo a .env
+3. Copiar el archivo .env.example y renombrarlo a .env: cp .env.example .env
 
 4. Abrir el archivo .env y completar las siguientes variables de configuración:
 
     *APP_KEY: cadena aleatoria que se utilizará para tareas de encriptación. 
-    Se recomienda que tenga una longitud mínima de 32 caracteres y que contega 
+    Se recomienda que tenga una longitud mínima de 32 caracteres y que contenga 
     letras en mayúsculas y minúsculas y números.
     *DB_HOST: IP o nombre de dominio donde se encuentra la base de datos.
     Importante Si la base de datos se encuentra en el mismo equipo, no utilizar
@@ -82,16 +102,18 @@ Una vez se tenga funcionando la base de datos, seguir las siguientes instruccion
 
 2. Entrar en la carpeta del proyecto: cd app-laravel
 
-3. Copiar el archivo .env.example y renombrarlo a .env
+3. Copiar el archivo .env.example y renombrarlo a .env: cp .env.example .env
 
 4. Abrir el archivo .env y completar las siguientes variables de configuración:
 
     *APP_KEY: cadena aleatoria que se utilizará para tareas de encriptación.
-    Se recomienda que tenga una longitud mínima de 32 caracteres y que contega 
+    Se recomienda que tenga una longitud mínima de 32 caracteres y que contenga 
     letras en mayúsculas y minúsculas y números.
     *API_URL: URL donde está desplegada la API Lumen. Importante Si API se 
     encuentra en el mismo equipo, no utilizar localhost o 127.0.0.1, sino la 
     IP que tiene el equipo en la red local (utilizad ifconfig para averiguarla).
+    No olvidar añadir una barra inclinada (/) al final de la URL. 
+    Ejemplo: http://192.168.1.61:8970/
 
 5. Construir la imagen de Docker: docker build -t carlosgmr/app-laravel .
    Tener en cuenta que hay que estar dentro de la carpeta del proyecto.
@@ -142,7 +164,7 @@ module.exports = {
 ######################################################################
 ### Instalación APP Angular ##########################################
 ######################################################################
-1. Instalar Node.js y npm: sudo apt-get install -y nodejs.
+1. Instalar Node.js y npm: sudo apt-get install -y nodejs
    Si el despliegue se realiza en un sistema operativo o distribución Linux distinta,
    consultar esta página https://nodejs.org/es/download/package-manager/
 
@@ -159,7 +181,8 @@ module.exports = {
 
 7. Modicar la clave api > url y poner la URL donde se encuentra desplegada la API Express.
    Importante: Si API se encuentra en el mismo equipo, no utilizar localhost o 127.0.0.1, 
-  sino la IP que tiene el equipo en la red local (utilizad ifconfig para averiguarla).
+   sino la IP que tiene el equipo en la red local (utilizad ifconfig para averiguarla).
+   No olvidar añadir una barra inclinada (/) al final de la URL. Ejemplo: http://192.168.1.61:8970/
 
 8. Generar contenido de despliegue: ng build --prod --build-optimizer
 
